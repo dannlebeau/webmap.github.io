@@ -1,0 +1,21 @@
+// Cargar datos GeoJSON desde un archivo externo
+fetch('data/data.geojson')
+    .then(response => response.json())
+    .then(data => {
+        // Función para definir el popup con imagen
+        function onEachFeature(feature, layer) {
+            if (feature.properties && feature.properties.nombre) {
+                var popupContent = "<strong>" + feature.properties.nombre + "</strong><br>" +
+                                   "<img src='" + feature.properties.imagen + "' alt='" + feature.properties.nombre + "' style='width:100px;height:auto;'><br>" +
+                                   "Descripción: " + feature.properties.descripcion + "<br>" +
+                                   "Información adicional: " + feature.properties.informacionAdicional;
+                layer.bindPopup(popupContent);
+            }
+        }
+
+        // Agregar el GeoJSON al mapa
+        L.geoJSON(data, {
+            onEachFeature: onEachFeature
+        }).addTo(map);
+    })
+    .catch(error => console.error("Error cargando el archivo GeoJSON:", error));
