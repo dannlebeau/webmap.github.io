@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "5",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32719" } },
+"features": [
+{ "type": "Feature", "properties": { "Layer": "5_AmpliaciÃ³n Muelle Prat", "PaperSpace": null, "SubClasses": "AcDbEntity:AcDbPolyline", "Linetype": null, "EntityHand": "DBE", "Text": null, "ogr_style": "PEN(c:#ff80a2)", "font": null, "angle": null, "size": null, "size_u": null, "anchor": null, "color": "#ff80a2", "underline": null, "plaintext": null, "fcolor": null, "flnum": null, "bold": null, "italic": null, "dx": null, "dx_u": null, "dy": null, "dy_u": null }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 254685.964909440197516, 6341444.979083101265132 ], [ 254693.942305873206351, 6341435.184444418177009 ], [ 254741.847462737292517, 6341639.668498163111508 ], [ 254732.111079715192318, 6341641.94947287812829 ], [ 254699.330097966012545, 6341502.023242119699717 ], [ 254668.628070915292483, 6341477.969383579678833 ], [ 254687.92476000188617, 6341453.33934473246336 ], [ 254685.964909440197516, 6341444.979083101265132 ] ] ] } }
+]
+}

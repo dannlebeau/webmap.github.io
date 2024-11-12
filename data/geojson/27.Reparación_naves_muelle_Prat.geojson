@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "27",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32719" } },
+"features": [
+{ "type": "Feature", "properties": { "Layer": "27_ReparaciÃ³n de naves Muelle Prat", "PaperSpace": null, "SubClasses": "AcDbEntity:AcDbPolyline", "Linetype": null, "EntityHand": "DD7", "Text": null, "ogr_style": "PEN(c:#6c6ce6)", "font": null, "angle": null, "size": null, "size_u": null, "anchor": null, "color": "#6c6ce6", "underline": null, "plaintext": null, "fcolor": null, "flnum": null, "bold": null, "italic": null, "dx": null, "dx_u": null, "dy": null, "dy_u": null }, "geometry": { "type": "MultiLineString", "coordinates": [ [ [ 254614.527416266413638, 6341682.113703780807555 ], [ 254623.557772065803874, 6341664.268461441621184 ], [ 254574.972437403193908, 6341639.682475483044982 ], [ 254565.433817801385885, 6341616.725029344670475 ], [ 254583.569911233702442, 6341594.453559637069702 ], [ 254568.061396380100632, 6341581.824961883947253 ], [ 254542.379261374793714, 6341613.362937406636775 ], [ 254559.341557264997391, 6341654.187607072293758 ], [ 254614.527416266588261, 6341682.113703780807555 ] ] ] } }
+]
+}
