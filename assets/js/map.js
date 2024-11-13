@@ -1,5 +1,5 @@
 // Inicializar el mapa centrado en un punto de referencia en Valparaíso
-var map = L.map('map').setView([-33.03159, -71.61676], 15);
+var map = L.map('map').setView([-33.03159, -71.61676], 15);  // Mantener coordenada en Valparaíso
 
 // Definir el mapa base de OpenStreetMap activado por defecto
 var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -27,13 +27,6 @@ var baseMaps = {
 
 // Control de capas
 var layerControl = L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(map);
-
-// Definir los sistemas de coordenadas EPSG:32719 (UTM zona 19S) y EPSG:4326 (Lat/Lon)
-proj4.defs("EPSG:32719", "+proj=utm +zone=19 +south +datum=WGS84 +units=m +no_defs");
-proj4.defs("EPSG:4326", "+proj=longlat +datum=WGS84 +no_defs");
-
-var projUTM = proj4("EPSG:32719");
-var projWGS84 = proj4("EPSG:4326");
 
 // Archivos GeoJSON
 var geojsonFiles = [
@@ -76,14 +69,8 @@ geojsonFiles.forEach(function(file) {
                             // Si el archivo es UTM, convertir las coordenadas
                             if (isUTM) {
                                 latLng = projUTM.inverse(coord);  // Convertir coordenadas UTM a lat/long
-                                console.log("Coordenada convertida UTM:", latLng);
                             } else {
                                 latLng = coord; // Si ya está en EPSG:4326, usar las coordenadas directamente
-                            }
-
-                            // Verificar que las coordenadas sean válidas
-                            if (latLng[0] < -90 || latLng[0] > 90 || latLng[1] < -180 || latLng[1] > 180) {
-                                console.warn("Coordenada fuera de rango:", latLng);
                             }
 
                             bounds.extend([latLng[0], latLng[1]]);  // Agregar las coordenadas al límite de la capa
@@ -102,20 +89,70 @@ geojsonFiles.forEach(function(file) {
                 },
                 onEachFeature: function(feature, layer) {
                     if (feature.properties && feature.properties.Layer) {
-                        var popupContent = "<strong>" + feature.properties.Layer + "</strong><br>" +
-                                           "Información adicional: " + (feature.properties.informacionAdicional || 'N/A');
-                        layer.bindPopup(popupContent);
+                        // Calcular el centroide para ubicar el punto
+                        var centroid = layer.getBounds().getCenter();
+
+                        // Crear el contenido del popup con una estructura fija y cerrado por defecto
+                        var popupContent = `
+                            <div style="width: 250px;">
+                                <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
+                                <p><strong>Año:</strong> ${feature.properties.year || 'N/A'}</p>
+                                <p><strong>Monto:</strong> ${feature.properties.amount || 'N/A'}</p>
+                                <p><strong>Foto del Proyecto:</strong><br>
+                                    <input type="file" accept="image/*" onchange="previewImage(event)">
+                                    <br><img id="imagePreview" src="" alt="Vista previa" style="width: 100%; height: auto; display: none;"/>
+                                </p>
+                                <button onclick="expandPopup('${feature.properties.Layer || 'Nombre del Proyecto'}')">Ampliar</button>
+                            </div>
+                        `;
+
+                        // Crear el nuevo pin azul para el centroide con el icono estándar de Leaflet
+                        var blueIcon = new L.Icon({
+                            iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png', // Pin azul estándar de Leaflet
+                            iconSize: [25, 41],  // Tamaño estándar del pin
+                            iconAnchor: [12, 41], // Anclaje del pin
+                            popupAnchor: [0, -41] // Ajuste del popup respecto al pin
+                        });
+
+                        var marker = L.marker(centroid, {
+                            icon: blueIcon  // Usamos el pin azul estándar
+                        }).addTo(map);
+
+                        // Asociar el contenido del popup al marcador, con el popup cerrado por defecto
+                        marker.bindPopup(popupContent);
+
+                        // Abrir el popup solo cuando se haga clic en el botón "Ampliar"
+                        marker.on('popupopen', function() {
+                            var expandButton = marker.getPopup().getElement().querySelector('button');
+                            expandButton.addEventListener('click', function() {
+                                marker.openPopup(); // Al hacer clic, se expande el popup
+                            });
+                        });
                     }
                 }
             }).addTo(map); // Añadir la capa directamente al mapa
 
             // Añadir la capa al control de capas
             layerControl.addOverlay(geojsonLayer, file);
-
-            // **No modificar el zoom y centro actual**: No usamos `map.fitBounds()`
-            // Dejar el control de zoom y centro como están actualmente en el mapa
         })
         .catch(error => {
             console.error("Error cargando el archivo GeoJSON:", error);
         });
 });
+
+// Función para mostrar la imagen cargada desde la carpeta assets/img
+function previewImage(event) {
+    var reader = new FileReader();
+    reader.onload = function() {
+        var image = document.getElementById("imagePreview");
+        image.src = reader.result;
+        image.style.display = "block";
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
+// Función para expandir el popup
+function expandPopup(name) {
+    alert('Ampliando información del proyecto: ' + name);
+    // Aquí puedes agregar más lógica para mostrar más detalles o cambiar el estilo de la ventana emergente
+}
