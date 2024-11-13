@@ -88,6 +88,8 @@ var geojsonFiles = [
 ];
 
 // Función para cargar y convertir cada archivo GeoJSON
+
+//
 geojsonFiles.forEach(function(file) {
     fetch(file)
         .then(response => {
@@ -98,42 +100,48 @@ geojsonFiles.forEach(function(file) {
             return response.json();
         })
         .then(data => {
-            console.log(`Archivo cargado correctamente: ${file}`);
-            
-            // Crear la capa GeoJSON con estilo personalizado para polígonos
-            var geojsonLayer = L.geoJSON(data, {
-                style: function(feature) {
-                    return {
-                        color: "#ff0000",       // Color del borde de los polígonos
-                        fillColor: "#0000ff",   // Color de relleno de los polígonos
-                        fillOpacity: 0.5,       // Opacidad del relleno
-                        weight: 2,              // Grosor de la línea
-                        opacity: 0.7            // Opacidad de la línea
-                    };
-                },
-                onEachFeature: function(feature, layer) {
-                    // Crear el contenido del popup con la información del proyecto
-                    var popupContent = `
-                        <div style="width: 250px;">
-                            <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
-                            <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
-                            <p><strong>Foto del Proyecto:</strong><br>
-                            <a href="${feature.properties.image_1}" target="_blank">
-                                <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
-                            </a><br>
-                            <a href="${feature.properties.image_2}" target="_blank">
-                                <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
-                            </a>
-                            </p>
-                        </div>
-                    `;
+            console.log(`Archivo cargado correctamente: ${file}`, data); // Verificar los datos del GeoJSON
 
-                    // Asociar el popup a la capa GeoJSON
-                    layer.bindPopup(popupContent);
-                }
-            }).addTo(map); // Añadir la capa directamente al mapa
+            // Asegurarnos de que las geometrías son válidas
+            if (data.features && data.features.length > 0) {
+                // Crear la capa GeoJSON con estilo personalizado para polígonos
+                var geojsonLayer = L.geoJSON(data, {
+                    style: function(feature) {
+                        return {
+                            color: "#ff0000",       // Color del borde de los polígonos
+                            fillColor: "#0000ff",   // Color de relleno de los polígonos
+                            fillOpacity: 0.5,       // Opacidad del relleno
+                            weight: 2,              // Grosor de la línea
+                            opacity: 0.7            // Opacidad de la línea
+                        };
+                    },
+                    onEachFeature: function(feature, layer) {
+                        // Crear el contenido del popup con la información del proyecto
+                        var popupContent = `
+                            <div style="width: 250px;">
+                                <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
+                                <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
+                                <p><strong>Foto del Proyecto:</strong><br>
+                                <a href="${feature.properties.image_1}" target="_blank">
+                                    <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
+                                </a><br>
+                                <a href="${feature.properties.image_2}" target="_blank">
+                                    <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
+                                </a>
+                                </p>
+                            </div>
+                        `;
+
+                        // Asociar el popup a la capa GeoJSON
+                        layer.bindPopup(popupContent);
+                    }
+                }).addTo(map); // Añadir la capa directamente al mapa
+            } else {
+                console.warn(`El archivo ${file} no contiene datos GeoJSON válidos.`);
+            }
         })
         .catch(error => {
             console.error("Error cargando el archivo GeoJSON:", error);
         });
 });
+
