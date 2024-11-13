@@ -88,9 +88,7 @@ var geojsonFiles = [
 ];
 
 // Función para cargar y convertir cada archivo GeoJSON
-
-//
-geojsonFiles.forEach(function(file) {
+geojsonFiles.forEach(function(file, index) {
     fetch(file)
         .then(response => {
             if (!response.ok) {
@@ -104,15 +102,29 @@ geojsonFiles.forEach(function(file) {
 
             // Asegurarnos de que las geometrías son válidas
             if (data.features && data.features.length > 0) {
+                // Definir los colores de borde y relleno según el índice del archivo
+                let fillColor, borderColor;
+                if (index < 10) {
+                    fillColor = "#0000ff";   // Azul
+                    borderColor = "#0000ff"; // Azul para borde
+                } else if (index < 20) {
+                    fillColor = "#ff0000";   // Rojo
+                    borderColor = "#ff0000"; // Rojo para borde
+                } else {
+                    fillColor = "#008000";   // Verde
+                    borderColor = "#008000"; // Verde para borde
+                }
+
                 // Crear la capa GeoJSON con estilo personalizado para polígonos
                 var geojsonLayer = L.geoJSON(data, {
                     style: function(feature) {
+                        // Verificar si la geometría es un polígono antes de aplicar el estilo
                         return {
-                            color: "#ff0000",       // Color del borde de los polígonos
-                            fillColor: "#0000ff",   // Color de relleno de los polígonos
-                            fillOpacity: 1,       // Opacidad del relleno
-                            weight: 2,              // Grosor de la línea
-                            opacity: 1           // Opacidad de la línea
+                            color: borderColor,      // Color del borde de los polígonos (según el índice)
+                            fillColor: fillColor,    // Color de relleno de los polígonos (según el índice)
+                            fillOpacity: 0.6,        // Opacidad del relleno
+                            weight: 2,               // Grosor de la línea del borde
+                            opacity: 1               // Opacidad de la línea del borde
                         };
                     },
                     onEachFeature: function(feature, layer) {
@@ -144,4 +156,3 @@ geojsonFiles.forEach(function(file) {
             console.error("Error cargando el archivo GeoJSON:", error);
         });
 });
-
