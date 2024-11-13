@@ -1,7 +1,7 @@
 //=======================================OPCIONES DE MAPA=========================================================//
 
 // Inicializar el mapa centrado en un punto de referencia en Valparaíso
-var map = L.map('map').setView([-33.03159, -71.61676], 15);  // Mantener coordenada en Valparaíso
+var map = L.map('map').setView([-33.03159, -71.61676], 15);
 
 // Mapa Base
 var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -10,30 +10,29 @@ var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}
 });
 
 var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
-	minZoom: 0,
-	maxZoom: 20,
-	attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-	ext: 'png'
+    minZoom: 0,
+    maxZoom: 20,
+    attribution: '&copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a> &copy; OpenMapTiles &copy; OpenStreetMap contributors',
+    ext: 'png'
 });
 
 var cartoDBPositronLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://carto.com/attributions">CartoDB</a> | &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    attribution: '&copy; CartoDB | © OpenStreetMap',
     maxZoom: 19
 });
 
 var esriWorldImageryLayer = L.tileLayer('https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+    attribution: 'Tiles © Esri & GIS User Community',
     maxZoom: 18
-}).addTo(map); //  addTo define el mapa base por defecto
+}).addTo(map); // Esri World Imagery es el mapa base por defecto
 
 var ESRItopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Nokia',
     maxZoom: 18
 });
 
-
 //===========================CONTROL DE CAPAS==============================//
-// Crear el control de capas para mapas base
+// Crear el control de capas solo para mapas base
 var baseMaps = {
     "OpenStreetMap": openStreetMapLayer,
     "Stadia": Stadia_AlidadeSmooth,
@@ -43,15 +42,15 @@ var baseMaps = {
 };
 
 // Control de capas
-var layerControl = L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(map);
+L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(map);
 
-//==========================CARGA DE ARCHIVOS===========================================================================//
+//==========================CARGA DE ARCHIVOS GEOJSON===========================================================================//
 
 // Archivos GeoJSON
 var geojsonFiles = [
     'data/geojson/1.Mejoramiento_Sector_Las_Torpederas.geojson',
     'data/geojson/2.Renovacion_Playa_Carvallo.geojson',
-    'data/geojson/3.Balneario_San_Mateo.geojson',
+	'data/geojson/3.Balneario_San_Mateo.geojson',
     'data/geojson/4.Mejoramiento_Muelle_Prat.geojson',
     'data/geojson/5.Ampliacion_Muelle_Prat_4326.geojson',
     'data/geojson/6.Construccion_Parque_Baron.geojson',
@@ -103,15 +102,15 @@ geojsonFiles.forEach(function(file) {
             
             // Crear la capa GeoJSON con estilo personalizado para polígonos
             var geojsonLayer = L.geoJSON(data, {
-                style: function(feature){
-                return {
-                    color: "#ff0000", // Color del borde de los polígonos
-                    fillColor: "#000000", // Color de relleno de los polígonos
-                    fillOpacity: 0.5, // Opacidad del relleno
-                    weight: 3.5, // Grosor de la línea
-                    opacity: 0.7 // Opacidad de la línea
-                };
-            },
+                style: function(feature) {
+                    return {
+                        color: "#ff0000",       // Color del borde de los polígonos
+                        fillColor: "#0000ff",   // Color de relleno de los polígonos
+                        fillOpacity: 0.5,       // Opacidad del relleno
+                        weight: 2,              // Grosor de la línea
+                        opacity: 0.7            // Opacidad de la línea
+                    };
+                },
                 onEachFeature: function(feature, layer) {
                     // Crear el contenido del popup con la información del proyecto
                     var popupContent = `
@@ -119,10 +118,10 @@ geojsonFiles.forEach(function(file) {
                             <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
                             <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
                             <p><strong>Foto del Proyecto:</strong><br>
-                            <a href="${feature.properties.image_1}" target= "_blank">
+                            <a href="${feature.properties.image_1}" target="_blank">
                                 <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
                             </a><br>
-                            <a href="${feature.properties.image_2}" target= "_blank">
+                            <a href="${feature.properties.image_2}" target="_blank">
                                 <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
                             </a>
                             </p>
@@ -133,22 +132,8 @@ geojsonFiles.forEach(function(file) {
                     layer.bindPopup(popupContent);
                 }
             }).addTo(map); // Añadir la capa directamente al mapa
-
-            // Añadir la capa al control de capas
-            layerControl.addOverlay(geojsonLayer, file);
         })
         .catch(error => {
             console.error("Error cargando el archivo GeoJSON:", error);
         });
 });
-
-// Función para mostrar la imagen cargada desde la carpeta assets/img
-function previewImage(event) {
-    var reader = new FileReader();
-    reader.onload = function() {
-        var image = document.getElementById("imagePreview");
-        image.src = reader.result;
-        image.style.display = "block";
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
