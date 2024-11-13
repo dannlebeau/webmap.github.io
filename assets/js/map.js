@@ -100,91 +100,37 @@ geojsonFiles.forEach(function(file) {
         })
         .then(data => {
             console.log(`Archivo cargado correctamente: ${file}`);
-            console.log(data);  // Mostrar el archivo GeoJSON completo en consola para depuración
-
-            // Verificar si el archivo tiene características GeoJSON válidas
-            if (!data.features || data.features.length === 0) {
-                console.error(`El archivo ${file} no tiene características GeoJSON válidas.`);
-                return;
-            }
-
-            // Verificar el sistema de coordenadas del archivo GeoJSON
-            var isUTM = data.crs && data.crs.properties.name === "EPSG:32719";
-
-            // Convertir las coordenadas de UTM a lat/long si es necesario
-            var bounds = L.latLngBounds();  // Para ajustar el centro del mapa
-            data.features.forEach(function(feature) {
-                if (feature.geometry && (feature.geometry.type === "MultiLineString" || feature.geometry.type === "LineString")) {
-                    feature.geometry.coordinates = feature.geometry.coordinates.map(function(segment) {
-                        return segment.map(function(coord) {
-                            var latLng;
-                            // Si el archivo es UTM, convertir las coordenadas
-                            if (isUTM) {
-                                latLng = projUTM.inverse(coord);  // Convertir coordenadas UTM a lat/long
-                            } else {
-                                latLng = coord; // Si ya está en EPSG:4326, usar las coordenadas directamente
-                            }
-
-                            bounds.extend([latLng[0], latLng[1]]);  // Agregar las coordenadas al límite de la capa
-                            return [latLng[0], latLng[1]]; // Leaflet usa formato [lat, lng]
-                        });
-                    });
-                }
-            });
-
-            // Crear la capa GeoJSON con un estilo más visible
+            
+            // Crear la capa GeoJSON con estilo personalizado para polígonos
             var geojsonLayer = L.geoJSON(data, {
-                style: {
-                    color: "#ff0000",  // Color rojo
-                    //fill: "#white",        //////// ver relleno
-                    weight: 3.5,         // Grosor de la línea
-                    opacity: 0.7       // Opacidad moderada
-                },
+                style: function(feature){
+                return {
+                    color: "#ff0000", // Color del borde de los polígonos
+                    fillColor: "#000000", // Color de relleno de los polígonos
+                    fillOpacity: 0.5, // Opacidad del relleno
+                    weight: 3.5, // Grosor de la línea
+                    opacity: 0.7 // Opacidad de la línea
+                };
+            },
                 onEachFeature: function(feature, layer) {
-                    if (feature.properties && feature.properties.Layer) {
-                        // Calcular el centroide para ubicar el punto
-                        var centroid = layer.getBounds().getCenter();
+                    // Crear el contenido del popup con la información del proyecto
+                    var popupContent = `
+                        <div style="width: 250px;">
+                            <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
+                            <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
+                            <p><strong>Foto del Proyecto:</strong><br>
+                            <a href="${feature.properties.image_1}" target= "_blank">
+                                <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
+                            </a><br>
+                            <a href="${feature.properties.image_2}" target= "_blank">
+                                <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
+                            </a>
+                            </p>
+                        </div>
+                    `;
 
-                        // Crear el contenido del popup con una estructura fija y cerrado por defecto
-                        var popupContent = `
-                            <div style="width: 250px;">
-                                <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
-                                <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
-                                <p><strong>Foto del Proyecto:</strong><br>
-                                <a href="${feature.properties.image_1}" target= "_blank">
-                                    <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
-                                </a><br>
-                                <a href="${feature.properties.image_2}" target= "_blank">
-                                    <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
-                                </a>
-                                    
-                                </p>
-                            </div>
-                        `;
-
-                        // Crear el nuevo pin azul para el centroide con el icono estándar de Leaflet
-                        var blueIcon = new L.Icon({
-                            iconUrl: 'https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon-2x.png', // Pin azul estándar de Leaflet
-                            iconSize: [25, 41],  // Tamaño estándar del pin
-                            iconAnchor: [12, 41], // Anclaje del pin
-                            popupAnchor: [0, -41] // Ajuste del popup respecto al pin
-                        });
-
-                        var marker = L.marker(centroid, {
-                            icon: blueIcon  // Usamos el pin azul estándar
-                        }).addTo(map);
-
-                        // Asociar el contenido del popup al marcador, con el popup cerrado por defecto
-                        marker.bindPopup(popupContent);
-
-                        // Abrir el popup solo cuando se haga clic en el botón "Ampliar"
-                        marker.on('popupopen', function() {
-                            var expandButton = marker.getPopup().getElement().querySelector('button');
-                            expandButton.addEventListener('click', function() {
-                                marker.openPopup(); // Al hacer clic, se expande el popup
-                            });
-                        });
-                    }
+                    // Asociar el popup a la capa GeoJSON
+                    layer.bindPopup(popupContent);
                 }
             }).addTo(map); // Añadir la capa directamente al mapa
 
@@ -205,10 +151,4 @@ function previewImage(event) {
         image.style.display = "block";
     };
     reader.readAsDataURL(event.target.files[0]);
-}
-
-// Función para expandir el popup
-function expandPopup(name) {
-    alert('Ampliando información del proyecto: ' + name);
-    // Aquí puedes agregar más lógica para mostrar más detalles o cambiar el estilo de la ventana emergente
 }
