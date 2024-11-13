@@ -87,7 +87,7 @@ var geojsonFiles = [
     'data/geojson/37.Soterramiento_Red_Ferroviaria.geojson'
 ];
 
-// Función para cargar y convertir cada archivo GeoJSON
+// Función para cargar y convertir cada archivo
 geojsonFiles.forEach(function(file, index) {
     fetch(file)
         .then(response => {
@@ -102,27 +102,26 @@ geojsonFiles.forEach(function(file, index) {
 
             // Asegurarnos de que las geometrías son válidas
             if (data.features && data.features.length > 0) {
-                // Definir los colores de borde y relleno según el índice del archivo
+                // Definir los colores de relleno y borde según el índice del archivo
                 let fillColor, borderColor;
                 if (index < 10) {
-                    fillColor = "#0000ff";   // Azul
+                    fillColor = "#0000ff";   // Azul para relleno
                     borderColor = "#0000ff"; // Azul para borde
                 } else if (index < 20) {
-                    fillColor = "#ff0000";   // Rojo
+                    fillColor = "#ff0000";   // Rojo para relleno
                     borderColor = "#ff0000"; // Rojo para borde
                 } else {
-                    fillColor = "#008000";   // Verde
+                    fillColor = "#008000";   // Verde para relleno
                     borderColor = "#008000"; // Verde para borde
                 }
 
                 // Crear la capa GeoJSON con estilo personalizado para polígonos
                 var geojsonLayer = L.geoJSON(data, {
                     style: function(feature) {
-                        // Verificar si la geometría es un polígono antes de aplicar el estilo
                         return {
-                            color: borderColor,      // Color del borde de los polígonos (según el índice)
-                            fillColor: fillColor,    // Color de relleno de los polígonos (según el índice)
-                            fillOpacity: 0.6,        // Opacidad del relleno
+                            color: borderColor,      // Color del borde de los polígonos
+                            fillColor: fillColor,    // Color de relleno de los polígonos
+                            fillOpacity: 0.6,        // Opacidad del relleno (ajustar según se desee)
                             weight: 2,               // Grosor de la línea del borde
                             opacity: 1               // Opacidad de la línea del borde
                         };
