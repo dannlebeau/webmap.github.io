@@ -110,9 +110,9 @@ geojsonFiles.forEach(function(file) {
                         return {
                             color: "#ff0000",       // Color del borde de los polígonos
                             fillColor: "#0000ff",   // Color de relleno de los polígonos
-                            fillOpacity: 0.5,       // Opacidad del relleno
+                            fillOpacity: 1,       // Opacidad del relleno
                             weight: 2,              // Grosor de la línea
-                            opacity: 0.7            // Opacidad de la línea
+                            opacity: 1           // Opacidad de la línea
                         };
                     },
                     onEachFeature: function(feature, layer) {
