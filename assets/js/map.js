@@ -87,6 +87,7 @@ var geojsonFiles = [
     'data/geojson/37.Soterramiento_Red_Ferroviaria.geojson'
 ];
 
+//=========================Archivos GEOJSON================================================//
 // Función para cargar y convertir cada archivo
 geojsonFiles.forEach(function(file, index) {
     fetch(file)
@@ -155,3 +156,22 @@ geojsonFiles.forEach(function(file, index) {
             console.error("Error cargando el archivo GeoJSON:", error);
         });
 });
+
+//============================LEYENDA==============================================================================================//
+const legend = L.control({ position: 'bottomright' });
+
+legend.onAdd = function(map) {
+    var div = L.DomUtil.create('div', 'info legend');
+    div.style.backgroundColor = 'white'; // Fondo blanco
+    div.style.padding = '10px';          // Espacio interno
+    div.style.borderRadius = '5px';      // Bordes redondeados
+    div.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.2)'; // Sombra para el efecto
+
+    div.innerHTML += "<h4>Colores de Proyectos</h4>";
+    div.innerHTML += '<i style="background: #0000ff; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 1-10<br>';
+    div.innerHTML += '<i style="background: #ff0000; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 11-20<br>';
+    div.innerHTML += '<i style="background: #008000; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 21-37<br>';
+    return div;
+};
+
+legend.addTo(map);
