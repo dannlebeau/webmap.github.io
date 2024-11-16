@@ -6,28 +6,28 @@ var map = L.map('map').setView([-33.03159, -71.61676], 15);
 // Mapa Base
 var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 18,
-    attribution: '© OpenStreetMap'
+    attribution: '© Dann LeBeau'
 });
 
 var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
     minZoom: 0,
     maxZoom: 20,
-    attribution: '&copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a> &copy; OpenMapTiles &copy; OpenStreetMap contributors',
+    attribution: '&copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a> &copy; OpenMapTiles &copy; Dann LeBeau',
     ext: 'png'
 });
 
 var cartoDBPositronLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-    attribution: '&copy; CartoDB | © OpenStreetMap',
+    attribution: '&copy; CartoDB | © Dann LeBeau',
     maxZoom: 19
 });
 
 var esriWorldImageryLayer = L.tileLayer('https://server.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles © Esri & GIS User Community',
+    attribution: 'Tiles © Dann LeBeau',
     maxZoom: 18
 }).addTo(map); // Esri World Imagery es el mapa base por defecto
 
 var ESRItopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Nokia',
+    attribution: '© Dann LeBeau',
     maxZoom: 18
 });
 
@@ -38,11 +38,16 @@ var baseMaps = {
     "Stadia": Stadia_AlidadeSmooth,
     "CartoDB Positron": cartoDBPositronLayer,
     "ESRI": esriWorldImageryLayer,
-    "Topographic": ESRItopo,
+    // "Topographic": ESRItopo,
 };
 
 // Control de capas
 L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addTo(map);
+
+
+//===================Barra de Busqueda===========================================================//
+
+
 
 //==========================CARGA DE ARCHIVOS GEOJSON===========================================================================//
 
