@@ -53,43 +53,45 @@ L.control.layers(baseMaps, null, { position: 'topright', collapsed: true }).addT
 
 // Archivos GeoJSON
 var geojsonFiles = [
-    'data/geojson/1.Mejoramiento_Sector_Las_Torpederas.geojson',
-    'data/geojson/2.Renovacion_Playa_Carvallo.geojson',
-	'data/geojson/3.Balneario_San_Mateo.geojson',
-    'data/geojson/4.Mejoramiento_Muelle_Prat.geojson',
-    'data/geojson/5.Ampliacion_Muelle_Prat_4326.geojson',
-    'data/geojson/6.Construccion_Parque_Baron.geojson',
-    'data/geojson/7.Paseo_Costero.geojson',
-    'data/geojson/8.Paseo_Juan_de_Saavedra.geojson',
-    'data/geojson/9.Nuevos_miradores.geojson',
-    'data/geojson/10.Equipamiento_Mirador_viento_sur.geojson',
-    'data/geojson/11.Caleta_El_Membrillo.geojson',
-    'data/geojson/12.Plaza_Sotomayor.geojson',
-    'data/geojson/13.Port_Center.geojson',
-    'data/geojson/14.Mejoramiento_Avenida_Brasil.geojson',
-    'data/geojson/15.Avenida_Brasil_Argentina.geojson',
-    'data/geojson/16.Compra_Terreno.geojson',
-    'data/geojson/17.Viviendas_Edificio_Tassara.geojson',
-    'data/geojson/18.Estacionamientos_Plan.geojson',
-    'data/geojson/19.Bodega_Simon_Bolivar.geojson',
-    'data/geojson/20.Equipamiento_Nautico_Baron.geojson',
-    'data/geojson/21.Tornamesa.geojson',
-    'data/geojson/22.Renovacion_Quebrada_Los_Placeres.geojson',
-    'data/geojson/23.Caleta_Joya_del_Pacifico.geojson',
-    'data/geojson/24.Ampliacion_Portuaria.geojson',
-    'data/geojson/25.Molo_de_abrigo.geojson',
-    'data/geojson/26.Caleta_Portales.geojson',
-    'data/geojson/27.Reparacion_naves_Muelle_Prat.geojson',
-    'data/geojson/28.Intermodal_Ferroviaria_Yolanda.geojson',
-    'data/geojson/29.Paseo_Altamirano.geojson',
-    'data/geojson/30.Rehabilitacion_ascensores.geojson',
-    'data/geojson/31.Paseo_Errazuriz_España.geojson',
-    'data/geojson/32.Rutas_seguras_boulevares.geojson',
-    'data/geojson/33.Paisajes_Barrio_Puerto.geojson',
-    'data/geojson/34.Intermodal_Baron.geojson',
-    'data/geojson/35.Soterramiento_Estaciones.geojson',
-    'data/geojson/36.Accesibildiad_Estacion_Portales.geojson',
-    'data/geojson/37.Soterramiento_Red_Ferroviaria.geojson'
+    'data/geojson/1.Borde_costero_Las_Torpederas_poligono.geojson',
+    'data/geojson/2.Renovacion_Playa_Carvallo_poligono.geojson',
+	'data/geojson/3.Balneario_San_Mateo_poligono.geojson',
+    'data/geojson/4.Mejoramiento_Muelle_Prat_poligono.geojson',
+    'data/geojson/5.Ampliacion_Muelle_Prat_poligono.geojson',
+    'data/geojson/6.Construccion_Parque_Baron_poligono.geojson',
+    'data/geojson/7.Equipamiento_Nautico_Baron_poligono.geojson',
+    'data/geojson/8.Marina_deportiva_Baron_poligono.geojson',
+    'data/geojson/9.Paseo_costero_poligono.geojson',
+    'data/geojson/10.Paseo_Juan_de_Saavedra_poligono.geojson',
+    'data/geojson/11.Nuevos_Miradores_poligono.geojson',
+    'data/geojson/12.Equipamiento_Mirador_Viento_Sur_poligono.geojson',
+    'data/geojson/13.Caleta_El_Membrillo_poligono.geojson',
+    'data/geojson/14.Plaza_sotomayor_poligono.geojson',
+    'data/geojson/15.Port_Center_poligono.geojson',
+    'data/geojson/16.Mejoramiento_Avenida_Brasil_poligono.geojson',
+    'data/geojson/17.Avenida_Brasil_Argentina_poligono.geojson',
+    'data/geojson/18.Adquisicion_terrenos_poligono.geojson',
+    'data/geojson/19.Viviendas_Edificio_Tassara_poligono.geojson',
+    'data/geojson/20.Archivo_regional_Taller_poligono.geojson',
+    'data/geojson/21.Estacionamientos_Plan_poligono.geojson',
+    'data/geojson/22.Bodega_Simon_Bolivar_poligono.geojson',
+    'data/geojson/23.Maestranza_tornamesa_poligono.geojson',
+    'data/geojson/24.Renovacion_quebrada_los_placeres_poligono.geojson',
+    'data/geojson/25.Caleta_Joya_del_Pacifico_poligono.geojson',
+    'data/geojson/26.Ampliacion_portuaria_poligono.geojson',
+    'data/geojson/27.Molo_abrigo_poligono.geojson',
+    'data/geojson/28.Puente_Portuario_poligono.geojson',
+    'data/geojson/29.Mejoramiento_Caletas_poligono.geojson',
+    'data/geojson/30.Varadero_reparacion_naves_menores_poligono.geojson',
+    'data/geojson/31.Intermodal_ferroviaria_Yolanda_poligono.geojson',
+    'data/geojson/32.Paseo_Altamirano_poligono.geojson',
+    'data/geojson/33.Rehabilitacion_ascensores_poligono.geojson',
+    'data/geojson/34.Paseo_Errazuriz_España_poligono.geojson',
+    'data/geojson/35.Rutas_seguras_boulevares_poligono.geojson',
+    'data/geojson/36.Pasajes_Barrio_Puerto_poligono.geojson',
+    'data/geojson/37.Intermodal_Baron_poligono.geojson',
+    'data/geojson/38.Soterramiento_estaciones_poligono.geojson',
+    'data/geojson/39.Accesibilidad_Estacion_Portales_poligono.geojson',
 ];
 
 //=========================Archivos GEOJSON================================================//
@@ -110,15 +112,23 @@ geojsonFiles.forEach(function(file, index) {
             if (data.features && data.features.length > 0) {
                 // Definir los colores de relleno y borde según el índice del archivo
                 let fillColor, borderColor;
-                if (index < 10) {
-                    fillColor = "#0000ff";   // Azul para relleno
-                    borderColor = "#0000ff"; // Azul para borde
-                } else if (index < 20) {
-                    fillColor = "#ff0000";   // Rojo para relleno
-                    borderColor = "#ff0000"; // Rojo para borde
-                } else {
-                    fillColor = "#008000";   // Verde para relleno
-                    borderColor = "#008000"; // Verde para borde
+                //Componente 1
+                if (index < 11) {
+                    fillColor = "#578DCA";   // Celeste para relleno
+                    borderColor = "#578DCA"; // Celeste para borde
+                    //Componente 2
+                } else if (index < 24) {
+                    fillColor = "#A1C750";   // Verde para relleno
+                    borderColor = "#A1C750"; // Verde para borde
+                    //Componente 3
+                } else if (index < 31) {
+                    fillColor = "#E94190";   // Rosa para relleno
+                    borderColor = "#E94190"; // Rosa para borde
+                }
+                //Componente 4
+                else {
+                    fillColor = "#EA573C";   // Rojo para relleno
+                    borderColor = "#EA573C"; // Rojo para borde
                 }
 
                 // Crear la capa GeoJSON con estilo personalizado para polígonos
@@ -135,19 +145,15 @@ geojsonFiles.forEach(function(file, index) {
                     onEachFeature: function(feature, layer) {
                         // Crear el contenido del popup con la información del proyecto
                         var popupContent = `
-                            <div style="width: 250px;">
-                                <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
-                                <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
-                                <p><strong>Foto del Proyecto:</strong><br>
-                                <a href="${feature.properties.image_1}" target="_blank">
-                                    <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
-                                </a><br>
-                                <a href="${feature.properties.image_2}" target="_blank">
-                                    <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
-                                </a>
-                                </p>
-                            </div>
-                        `;
+    <div style="width: 250px;">
+        <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
+        <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
+        <p><strong></strong>
+            <a href="${feature.properties.pdf_link}" target="_blank">Ver Iniciativa</a>
+        </p>
+    </div>
+`;
+
 
                         // Asociar el popup a la capa GeoJSON
                         layer.bindPopup(popupContent);
@@ -172,11 +178,60 @@ legend.onAdd = function(map) {
     div.style.borderRadius = '5px';      // Bordes redondeados
     div.style.boxShadow = '0 0 15px rgba(0, 0, 0, 0.2)'; // Sombra para el efecto
 
-    div.innerHTML += "<h4>Colores de Proyectos</h4>";
-    div.innerHTML += '<i style="background: #0000ff; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 1-10<br>';
-    div.innerHTML += '<i style="background: #ff0000; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 11-20<br>';
-    div.innerHTML += '<i style="background: #008000; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Proyectos 21-37<br>';
+    div.innerHTML += "<h4>Iniciativas de inversión</h4>";
+    div.innerHTML += '<i style="background: #578DCA; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Acceso al Mar<br>'; // Componente 1
+    div.innerHTML += '<i style="background: #A1C750; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Renovación Urbana<br>'; // Componente 2
+    div.innerHTML += '<i style="background: #E94190; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Infraestructura Productiva y Portuaria<br>'; //Componente 3
+    div.innerHTML += '<i style="background: #EA573C; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Movilidad y Espacio Público<br>'; // Componente 4
     return div;
 };
 
 legend.addTo(map);
+
+
+
+
+//==============================OTROS=======================================//
+
+// var popupContent = `
+//     <div style="width: 250px;">
+//         <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
+//         <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
+//         <p><strong>Link del Proyecto:</strong><br>
+//             <a href="${feature.properties.image_1}" target="_blank">
+//                 <img src="${feature.properties.image_1}" alt="${feature.properties.name}" width="250px">
+//             </a><br>
+//             <a href="${feature.properties.image_2}" target="_blank">
+//                 <img src="${feature.properties.image_2}" alt="${feature.properties.name}" width="250px">
+//             </a>
+//         </p>
+//         <p><strong>PDF del Proyecto:</strong><br>
+//             <a href="${feature.properties.pdf_link}" target="_blank">Ver PDF del Proyecto</a>
+//         </p>
+//     </div>
+// `;
+
+
+//================Address search=======================================//
+
+
+
+// // Agregar el control de búsqueda de direcciones
+// const addressSearch = new L.Control.GeoapifyAddressSearch({
+//     apiKey: 'eb8fa138e322405ab0a7b33b857a9e66',  // Reemplaza con tu clave API de Geoapify
+//     position: 'topright', // Colocamos temporalmente en una posición
+//     placeholder: 'Buscar dirección...', // Texto de marcador de posición
+//     resultCallback: (result) => {
+//         if (result) {
+//             map.setView(result.latlng, 15); // Centrar el mapa en el resultado
+//         }
+//     }
+// });
+// map.addControl(addressSearch);
+
+// // Aplicar estilos CSS para centrar el control de búsqueda en la parte superior
+// const searchControlElement = document.querySelector('.leaflet-control-geocoder');
+// searchControlElement.style.position = 'absolute';
+// searchControlElement.style.top = '10px'; // Distancia desde la parte superior
+// searchControlElement.style.left = '50%';
+// searchControlElement.style.transform = 'translateX(-50%)'; // Centra el control horizontalmente

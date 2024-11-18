@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "30",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Layer": "30.Varadero y espacio para reparación de naves menores","descripcion":"Construcción de un varadero e infraestructura para la reparación y mantenimiento de naves menores. ","pdf_link":"assets/doc/PDF_30.pdf", "PaperSpace": null, "SubClasses": "AcDbEntity:AcDbPolyline", "Linetype": null, "EntityHand": "3AF99", "Text": null, "ogr_style": "PEN(c:#6c6ce6)", "font": null, "angle": null, "size": null, "size_u": null, "anchor": null, "color": "#6c6ce6", "underline": null, "plaintext": null, "fcolor": null, "flnum": null, "bold": null, "italic": null, "dx": null, "dx_u": null, "dy": null, "dy_u": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.606246940494486, -33.040880111228006 ], [ -71.605514042704229, -33.041233015270407 ], [ -71.605558601304608, -33.041293096686111 ], [ -71.6062913982135, -33.0409402410829 ], [ -71.60652717546462, -33.041268184702403 ], [ -71.606785435346623, -33.040800859394778 ], [ -71.606329989660523, -33.040542488461249 ], [ -71.606098478881762, -33.04064870109864 ], [ -71.606246940494486, -33.040880111228006 ] ] ] ] } }
+]
+}
