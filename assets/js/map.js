@@ -65,6 +65,7 @@ var geojsonFiles = [
     'data/geojson/10.Paseo_Juan_de_Saavedra_poligono.geojson',
     'data/geojson/11.Nuevos_Miradores_poligono.geojson',
     'data/geojson/12.Equipamiento_Mirador_Viento_Sur_poligono.geojson',
+
     'data/geojson/13.Caleta_El_Membrillo_poligono.geojson',
     'data/geojson/14.Plaza_sotomayor_poligono.geojson',
     'data/geojson/15.Port_Center_poligono.geojson',
