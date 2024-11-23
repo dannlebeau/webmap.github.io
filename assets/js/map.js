@@ -1,7 +1,7 @@
 //=======================================OPCIONES DE MAPA=========================================================//
 
 // Inicializar el mapa centrado en un punto de referencia en Valparaíso
-var map = L.map('map').setView([-33.03159, -71.61676], 15);
+var map = L.map ('map').setView([-33.03159, -71.61676], 15);
 
 // Mapa Base
 var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -9,12 +9,12 @@ var openStreetMapLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}
     attribution: '© Dann LeBeau'
 });
 
-var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
-    minZoom: 0,
-    maxZoom: 20,
-    attribution: '&copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a> &copy; OpenMapTiles &copy; Dann LeBeau',
-    ext: 'png'
-});
+// var Stadia_AlidadeSmooth = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.{ext}', {
+//     minZoom: 0,
+//     maxZoom: 20,
+//     attribution: '&copy; <a href="https://www.stadiamaps.com/">Stadia Maps</a> &copy; OpenMapTiles &copy; Dann LeBeau',
+//     ext: 'png'
+// });
 
 var cartoDBPositronLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
     attribution: '&copy; CartoDB | © Dann LeBeau',
@@ -35,7 +35,7 @@ var ESRItopo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/
 // Crear el control de capas solo para mapas base
 var baseMaps = {
     "OpenStreetMap": openStreetMapLayer,
-    "Stadia": Stadia_AlidadeSmooth,
+    // "Stadia": Stadia_AlidadeSmooth,
     "CartoDB Positron": cartoDBPositronLayer,
     "ESRI": esriWorldImageryLayer,
     // "Topographic": ESRItopo,
