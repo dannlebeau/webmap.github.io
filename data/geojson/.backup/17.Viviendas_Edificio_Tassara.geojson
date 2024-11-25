@@ -1,8 +1,0 @@
-{
-"type": "FeatureCollection",
-"name": "17",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
-{ "type": "Feature", "properties": { "Layer": "17_Viviendas Edificio Tassara", "PaperSpace": null, "SubClasses": "AcDbEntity:AcDbPolyline", "Linetype": null, "EntityHand": "902", "Text": null, "ogr_style": "PEN(c:#00a9af)", "font": null, "angle": null, "size": null, "size_u": null, "anchor": null, "color": "#00a9af", "underline": null, "plaintext": null, "fcolor": null, "flnum": null, "bold": null, "italic": null, "dx": null, "dx_u": null, "dy": null, "dy_u": null }, "geometry": { "type": "MultiPolygon", "coordinates": [ [ [ [ -71.631400909533653, -33.036870102689285 ], [ -71.631266338880479, -33.036782763983197 ], [ -71.631011247321396, -33.036610537395156 ], [ -71.630971405470987, -33.036613451480491 ], [ -71.630858369721594, -33.036772001631576 ], [ -71.630871450078942, -33.036805086688311 ], [ -71.631127289582565, -33.036934761102628 ], [ -71.631296517353164, -33.037020535728637 ], [ -71.631337075842069, -33.037012917832804 ], [ -71.631408593, -33.03690528457669 ], [ -71.631400912940492, -33.036870117936125 ], [ -71.631400909533653, -33.036870102689285 ] ] ] ] } }
-]
-}
