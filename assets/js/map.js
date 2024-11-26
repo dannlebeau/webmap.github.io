@@ -150,7 +150,7 @@ geojsonFiles.forEach(function(file, index) {
         <h4><strong>${feature.properties.Layer || 'Nombre del Proyecto'}</strong></h4>
         <p><strong>Descripción:</strong> ${feature.properties.descripcion || 'N/A'}</p>
         <p><strong></strong>
-            <a href="${feature.properties.pdf_link}" target="_blank">Ver Iniciativa</a>
+            <a href="${feature.properties.pdf_link_}" target="_blank">Ver Iniciativa</a>
         </p>
     </div>
 `;
