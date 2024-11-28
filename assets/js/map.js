@@ -139,7 +139,7 @@ geojsonFiles.forEach(function(file, index) {
                             color: borderColor,      // Color del borde de los polígonos
                             fillColor: fillColor,    // Color de relleno de los polígonos
                             fillOpacity: 0.6,        // Opacidad del relleno (ajustar según se desee)
-                            weight: 2,               // Grosor de la línea del borde
+                            weight: 3,               // Grosor de la línea del borde
                             opacity: 1               // Opacidad de la línea del borde
                         };
                     },
