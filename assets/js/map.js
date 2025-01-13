@@ -65,7 +65,6 @@ var geojsonFiles = [
     'data/geojson/10.Paseo_Juan_de_Saavedra_poligono.geojson',
     'data/geojson/11.Nuevos_Miradores_poligono.geojson',
     'data/geojson/12.Equipamiento_Mirador_Viento_Sur_poligono.geojson',
-
     'data/geojson/13.Caleta_El_Membrillo_poligono.geojson',
     'data/geojson/14.Plaza_sotomayor_poligono.geojson',
     'data/geojson/15.Port_Center_poligono.geojson',
@@ -93,6 +92,7 @@ var geojsonFiles = [
     'data/geojson/37.Intermodal_Baron_poligono.geojson',
     'data/geojson/38.Soterramiento_estaciones_poligono.geojson',
     'data/geojson/39.Accesibilidad_Estacion_Portales_poligono.geojson',
+    'data/geojson/40.Taxi_acuatico_poligono.geojson',
 ];
 
 //=========================Archivos GEOJSON================================================//
@@ -181,7 +181,7 @@ legend.onAdd = function(map) {
 
     div.innerHTML += "<h4>Iniciativas de inversión</h4>";
     div.innerHTML += '<i style="background: #578DCA; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Acceso al Mar<br>'; // Componente 1
-    div.innerHTML += '<i style="background: #A1C750; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Renovación Urbana<br>'; // Componente 2
+    div.innerHTML += '<i style="background: #A1C750; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Regeneración Urbana<br>'; // Componente 2
     div.innerHTML += '<i style="background: #E94190; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Infraestructura Productiva y Portuaria<br>'; //Componente 3
     div.innerHTML += '<i style="background: #EA573C; width: 18px; height: 18px; display: inline-block; margin-right: 8px; border: 1px solid black;"></i> Movilidad y Espacio Público<br>'; // Componente 4
     return div;
